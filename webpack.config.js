@@ -1,21 +1,19 @@
+const path = require('path');
+
 module.exports = {
-    entry: '/index.js',
-    output: {
-       filename: 'main.js'
-   },
-   plugins: [
-       new HtmlWebpackPlugin({template: '/index.pug'})
-   ],
-   module: {
-       rules: [
-               {
-               test: /\.pug$/,
-               loader: 'pug-loader',
-               options: {
-               pretty: true
-               }
-           }
-       ]
-   }
+  mode: 'development', 
+  entry: './src/index.js',
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'), 
+    },
+    compress: true, 
+    port: 9000, 
+    hot: true, 
+  },
 };
 
